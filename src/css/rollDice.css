@@ -11,3 +11,9 @@
     color: green;
     height: 50px;
 }
+
+.rollDiceWithTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

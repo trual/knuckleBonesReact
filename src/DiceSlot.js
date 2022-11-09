@@ -1,20 +1,28 @@
 import "./css/diceSlot.css";
 import Dice from "./Dice";
 
-const DiceSlot = ({ diceSlot, gridData, setGridData, pocketDice }) => {
+const DiceSlot = ({
+  diceSlot,
+  gridData,
+  setGridData,
+  pocketDice,
+  canClick = false,
+}) => {
   function handleDiceClick(e) {
     let data = [...gridData];
     data[diceSlot] = 0;
     setGridData(data);
     console.log("clicked a die");
+    console.log("canClick: " + canClick);
   }
 
   function handleEmptyDiceClick() {
     let data = [...gridData];
     data[diceSlot] = pocketDice;
-    setGridData(data);
+    if (canClick && pocketDice !== 0) {
+      setGridData(data);
+    }
     console.log("clicked a slot ");
-    console.log(pocketDice);
   }
 
   return gridData[diceSlot] ? (

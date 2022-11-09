@@ -2,8 +2,8 @@ import Dice from "./Dice";
 import { useState } from "react";
 import "./css/rollDice.css";
 
-function RollDice({ setPocketDice }) {
-  const [roll, setRoll] = useState(2);
+function RollDice({ setPocketDice, turn }) {
+  const [roll, setRoll] = useState(0);
 
   const handleClick = async () => {
     for (let i = 0; i < 8; i++) {
@@ -13,17 +13,21 @@ function RollDice({ setPocketDice }) {
     let face = Math.round(Math.random() * 5 + 1);
     setRoll(face);
     setPocketDice(face);
+    console.log("rolldice turn: " + turn)
   };
   function timeout(delay) {
     return new Promise((res) => setTimeout(res, delay));
   }
 
   return (
-    <div className="rolldice">
-      <Dice roll={roll} />
-      <button className="rollButton" onClick={handleClick}>
-        roll
-      </button>
+    <div className="rollDiceWithTitle">
+      <span style={{ color: "green" }}>Player Turn: {turn} </span>
+      <div className="rolldice">
+        <Dice roll={roll} />
+        <button className="rollButton" onClick={handleClick}>
+          roll
+        </button>
+      </div>
     </div>
   );
 }
