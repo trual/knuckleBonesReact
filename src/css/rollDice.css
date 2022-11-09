@@ -1,11 +1,13 @@
 .rolldice {
-    width: 100px;
-    height: 100px;
+    width: 250px;
+    height: 200px;
     display: flex;
-
+    flex-direction:  row;
+    justify-content: space-around;
+    align-items: center;
 }
-
 
 .rollButton {
     color: green;
+    height: 50px;
 }

@@ -2,15 +2,24 @@
 'https://fonts.googleapis.com/css2?family=Bellefair&display=swap');
 
 .App{
-	width: 100vw;
-	height: 100vh;
+	
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 	gap: 5vh;
-	backdrop-filter: 5px;
+	
+}
+
+.screen{
+    width: 100vw;
+	height: 100vh;
+    display: flex;
+    backdrop-filter: 5px;
 	background-color: #101010;
+    gap: 5vh;
+    justify-content: center;
+    align-items: center;
 }
 
 .winner {

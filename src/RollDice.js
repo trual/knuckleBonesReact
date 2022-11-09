@@ -1,5 +1,6 @@
 import Dice from "./Dice";
 import { useState } from "react";
+import "./css/rollDice.css"
 
 function RollDice() {
   const [roll, setRoll] = useState(2);
@@ -16,7 +17,6 @@ function RollDice() {
     return new Promise( res => setTimeout(res, delay) );
 }
 
-  console.log("meow");
   return (
     <div className="rolldice">
       <Dice roll={roll} />

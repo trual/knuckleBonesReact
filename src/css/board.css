@@ -5,8 +5,8 @@
 }
 
 .board{
-	width: 30vw;
-	height: 50%;
+	width: 480px;
+	height: 480px;
 	background-color: var(--board-background);
 	display: flex;
 	align-items: flex-start;
