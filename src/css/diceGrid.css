@@ -1,0 +1,9 @@
+.diceGrid{
+    width: 380px;
+    height: 380px;
+    background-color: rgb(76, 69, 69);
+    display: flex;
+    align-content: space-around;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}

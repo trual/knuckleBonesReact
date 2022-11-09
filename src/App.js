@@ -7,6 +7,7 @@ import RollDice from "./RollDice";
 
 // Importing the useState hook
 import { useState } from "react";
+import DiceGrid from "./DiceGrid";
 
 function App() {
   // Creating a reset state, which indicates whether
@@ -24,8 +25,11 @@ function App() {
     setReset(true);
   };
 
+  const [pocketDice, setPocketDice] = useState(1);
+
   return (
     <div className="screen">
+        <DiceGrid pocketDice={pocketDice} />
       <div className="App">
         {/* Shrinks the popup when there is no winner */}
         <div className={`winner ${winner !== "" ? "" : "shrink"}`}>
@@ -36,15 +40,15 @@ function App() {
         </div>
         {/* Custom made board component comprising of
 			the tic-tac-toe board */}
-        <Board
+        {/* <Board
           reset={reset}
           setReset={setReset}
           winner={winner}
           setWinner={setWinner}
         />
-        <Info />
+        <Info /> */}
       </div>
-      <RollDice />
+      <RollDice setPocketDice={setPocketDice}/>
     </div>
   );
 }
