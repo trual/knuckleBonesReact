@@ -1,0 +1,11 @@
+.rolldice {
+    width: 100px;
+    height: 100px;
+    display: flex;
+
+}
+
+
+.rollButton {
+    color: green;
+}

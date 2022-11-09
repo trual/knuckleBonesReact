@@ -1,9 +1,9 @@
 // Importing the required components
 import Board from "./Board";
 import Info from "./Info";
-
 // Importing the CSS File
 import "./css/app.css";
+import RollDice from "./RollDice";
 
 // Importing the useState hook
 import { useState } from "react";
@@ -42,6 +42,7 @@ function App() {
         setWinner={setWinner}
       />
       <Info />
+      <RollDice />
     </div>
   );
 }

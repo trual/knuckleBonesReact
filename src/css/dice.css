@@ -1,0 +1,29 @@
+.dice {
+    width: 100px;
+    height: 100px;
+  }
+
+  .img-1{
+    background-image: url('https://imgur.com/a005G8C.png');
+  }
+  
+  .img-2{
+    background-image: url('https://imgur.com/j9AlaxW.png');
+  }
+  
+  .img-3{
+    background-image: url('https://imgur.com/IyAYTXb.png');
+  }
+  
+  .img-4{
+    background-image: url('https://imgur.com/ecaqBPo.png');
+  }
+  
+  .img-5{
+    background-image: url('https://imgur.com/RfPJMxb.png');
+  }
+  
+  .img-6{
+    background-image: url('https://imgur.com/HmZcCX6.png');
+  }
+  
