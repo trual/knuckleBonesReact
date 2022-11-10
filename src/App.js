@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import DiceGrid from "./DiceGrid";
 
 function App() {
+  const [data1, setData1] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  const [data2, setData2] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0]);
   //the pocket die value
   const [pocketDice, setPocketDice] = useState(0);
 
@@ -15,6 +17,12 @@ function App() {
   // can place the dice
   const [canPlace, setCanPlace] = useState(false)
   // possibly need a can roll?
+  
+  useEffect(() => {
+    // remove matches
+    setTurn(turn === 1 ? 2 : 1);
+    setCanPlace(false);
+  }, [data1, data2]);
 
   useEffect(()=>{
     console.log("canplace: " + canPlace)
@@ -26,18 +34,18 @@ function App() {
         pocketDice={pocketDice}
         player={1}
         turn={turn}
-        setTurn={setTurn}
         canPlace={canPlace}
-        setCanPlace={setCanPlace}
+        data={data1}
+        setData={setData1}
       />
       <RollDice setPocketDice={setPocketDice} turn={turn} setCanPlace={setCanPlace} canRoll={canPlace} />
       <DiceGrid
         pocketDice={pocketDice}
         player={2}
         turn={turn}
-        setTurn={setTurn}
         canPlace={canPlace}
-        setCanPlace={setCanPlace}
+        data={data2}
+        setData={setData2}
       />
     </div>
   );
