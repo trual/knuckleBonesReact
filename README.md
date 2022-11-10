@@ -1,10 +1,9 @@
 TODO
-
- + move data up a layer? 
  + set end state
 
 
  + build it again with typescript
+
 
 + style it with tailwind
 

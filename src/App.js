@@ -3,39 +3,94 @@ import "./css/app.css";
 import RollDice from "./RollDice";
 
 // Importing the useState hook
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import DiceGrid from "./DiceGrid";
 
 function App() {
-  const [data1, setData1] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  const [data1, setData1] = useState([1, 2, 3, 4, 5, 6, 1, 2, 0]);
   const [data2, setData2] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  // const [data1, setData1] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  // const [data2, setData2] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0]);
   //the pocket die value
   const [pocketDice, setPocketDice] = useState(0);
 
   //Creating turn state for, which indicates player turn
-  const [turn, setTurn] = useState(0);
+  const [turn, setTurn] = useState(1);
   // can place the dice
   const [canPlace, setCanPlace] = useState(false);
 
+  // Creating a reset state, which indicates whether
+  // the game should be reset or not
+  const [reset, setReset] = useState(false);
+
+  // Creating a winner state, which indicates
+  // the current winner
+  const [winner, setWinner] = useState("");
+
+  // Sets the reset property to true
+  // which starts the chain
+  // reaction of resetting the board
+  const resetBoard = () => {
+    setReset(true);
+  };
+
+  const firstRender = useRef(true);
+
   useEffect(() => {
+    if (firstRender.current) {
+      return;
+    }
+    console.log("in de use effect");
     // remove matches
     const [dataMeow, dataRawr] = removeAllMatches(data1, data2);
-    //
+    
     if (JSON.stringify(dataMeow) !== JSON.stringify(data1)) {
       setData1(dataMeow);
       setData2(dataRawr);
+      console.log("aye there be a match");
+      return;
     } else {
       setTurn(turn === 1 ? 2 : 1);
       setCanPlace(false);
     }
+    console.log("break early?");
+    console.log(checkWin());
+    if (checkWin()) {
+      //check to total scores
+      //set winner
+      setWinner("Player 1 Wins");
+    }
+    //check winner
   }, [JSON.stringify(data1), JSON.stringify(data2)]);
 
   useEffect(() => {
-    console.log("canplace: " + canPlace);
-  }, [canPlace]);
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+
+    console.log("why ye beubg called)");
+    setData1([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    setData2([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    setTurn(1);
+    setWinner("");
+    setReset(false);
+    setPocketDice(0);
+  }, [reset]);
+
+  const checkWin = () => {
+    return !data1.includes(0) || !data2.includes(0);
+  };
 
   return (
     <div className="screen">
+      {/* Shrinks the popup when there is no winner */}
+      <div className={`winner ${winner !== "" ? "" : "shrink"}`}>
+        {/* Display the current winner */}
+        <div className="winner-text">{winner}</div>
+        {/* Button used to reset the board */}
+        <button onClick={() => resetBoard()}>Reset Board</button>
+      </div>
       <DiceGrid
         pocketDice={pocketDice}
         player={1}
@@ -70,21 +125,17 @@ const removeAllMatches = (gridA, gridB) => {
 
   const [row3A, row3B] = removeMatches(gridA.slice(6, 9), gridB.slice(6, 9));
 
-  console.log("rowA: " + row1A);
   return [row1A.concat(row2A, row3A), row1B.concat(row2B, row3B)];
 };
 
 const removeMatches = (rowA, rowB) => {
   // get intersection
   const arr = intersection(rowA, rowB);
-  console.log("intersection array: " + arr);
   let filterA = rowA;
   let filterB = rowB;
-  if (arr.length > 1) {
-    // get nozero value
-
-    const duplicate = arr.find((element) => element > 0);
-    console.log(duplicate);
+  // get nozero value
+  const duplicate = arr.find((element) => element > 0);
+  if (duplicate) {
     filterA = rowA.filter((x) => x !== duplicate);
     filterB = rowB.filter((x) => x !== duplicate);
 
@@ -93,6 +144,7 @@ const removeMatches = (rowA, rowB) => {
 
     console.log("removeMatches");
   }
+
   return [filterA.slice(0, 3), filterB.slice(0, 3)];
 };
 
