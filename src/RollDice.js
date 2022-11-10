@@ -6,10 +6,11 @@ function RollDice({ setPocketDice, turn, setCanPlace, canRoll }) {
   const [roll, setRoll] = useState(0);
 
   const handleClick = async () => {
-    for (let i = 0; i < 8; i++) {
-      await timeout(200); //for 1 sec delay
-      setRoll(Math.round(Math.random() * 5 + 1));
-    }
+    // this is for dramatic rolling effect
+    // for (let i = 0; i < 8; i++) {
+    //   await timeout(200); //for 1 sec delay
+    //   setRoll(Math.round(Math.random() * 5 + 1));
+    // }
     let face = Math.round(Math.random() * 5 + 1);
     setRoll(face);
     setPocketDice(face);

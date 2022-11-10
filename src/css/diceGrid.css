@@ -11,3 +11,36 @@
 .gridTitle {
     color: aliceblue;
 }
+
+.gridAndTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.totals {
+    padding-left: 30px;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.total {
+    text-align: center;
+    height: 40px;
+    width: 70px;
+    border: 5px;
+    border-style: solid;
+    border-color: aliceblue;
+    color: greenyellow;
+
+}
+
+.everything {
+    width: 420px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
