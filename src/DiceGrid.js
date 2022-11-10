@@ -1,39 +1,15 @@
-import { useEffect, useState } from "react";
 import "./css/diceGrid.css";
 import DiceSlot from "./DiceSlot";
 
-const DiceGrid = ({ pocketDice, player, turn, canPlace, data, setData }) => {
-  const [diceTotals, setDiceTotals] = useState([0, 0, 0]);
-
-  useEffect(() => {
-    calculateTotals();
-  }, [data]);
-
-  const calculateTotals = () => {
-    const row1 = calculateRow(data.slice(0, 3));
-    const row2 = calculateRow(data.slice(3, 6));
-    const row3 = calculateRow(data.slice(6, 9));
-    setDiceTotals([row1, row2, row3]);
-  };
-
-  const calculateRow = (triple) => {
-    const [a, b, c] = triple;
-    // all the same
-    if (a === b && b === c) {
-      return a * b * c;
-    }
-    if (a === b) {
-      return a * 4 + c;
-    }
-    if (a === c) {
-      return a * 4 + b;
-    }
-    if (b === c) {
-      return b * 4 + a;
-    }
-    return a + b + c;
-  };
-
+const DiceGrid = ({
+  pocketDice,
+  player,
+  turn,
+  canPlace,
+  data,
+  setData,
+  diceTotals,
+}) => {
   return (
     <div className="everything">
       <div className="gridAndTitle">
