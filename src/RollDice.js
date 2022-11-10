@@ -15,7 +15,6 @@ function RollDice({ setPocketDice, turn, setCanPlace, canRoll }) {
     setRoll(face);
     setPocketDice(face);
     setCanPlace(true)
-    console.log("rolldice turn: " + turn)
   };
 
   function timeout(delay) {

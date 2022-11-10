@@ -12,7 +12,6 @@ const DiceSlot = ({
     let data = [...gridData];
     data[diceSlot] = 0;
     /// setGridData(data); here for testing
-    console.log("clicked a die");
   }
 
   // 0, 1, 2
@@ -56,7 +55,6 @@ const DiceSlot = ({
 
       setGridData(data); 
     }
-    console.log("clicked a slot ");
   }
 
   return gridData[diceSlot] ? (
