@@ -11,16 +11,50 @@ const DiceSlot = ({
   function handleDiceClick(e) {
     let data = [...gridData];
     data[diceSlot] = 0;
-    setGridData(data);
+    /// setGridData(data); here for testing
     console.log("clicked a die");
-    console.log("canClick: " + canClick);
   }
+
+  // 0, 1, 2
+  // 3, 4, 5
+  // 6, 7, 8
 
   function handleEmptyDiceClick() {
     let data = [...gridData];
-    data[diceSlot] = pocketDice;
     if (canClick && pocketDice !== 0) {
-      setGridData(data);
+      // so we are able to set a dice
+      if (diceSlot < 3) {
+        // check neighbors
+        if (data[0] === 0) {
+          data[0] = pocketDice;
+        } else if (data[1] === 0) {
+          data[1] = pocketDice;
+        } else if (data[2] === 0) {
+          data[2] = pocketDice;
+        }
+         
+      }
+      else if (diceSlot > 5) {
+        if (data[6] === 0) {
+            data[6] = pocketDice;
+          } else if (data[7] === 0) {
+            data[7] = pocketDice;
+          } else if (data[8] === 0) {
+            data[8] = pocketDice;
+          }
+      }
+      else {
+        if (data[3] === 0) {
+            data[3] = pocketDice;
+          } else if (data[4] === 0) {
+            data[4] = pocketDice;
+          } else if (data[5] === 0) {
+            data[5] = pocketDice;
+          }
+      }
+      
+
+      setGridData(data); 
     }
     console.log("clicked a slot ");
   }

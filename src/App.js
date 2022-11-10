@@ -1,12 +1,9 @@
-// Importing the required components
-import Board from "./Board";
-import Info from "./Info";
 // Importing the CSS File
 import "./css/app.css";
 import RollDice from "./RollDice";
 
 // Importing the useState hook
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DiceGrid from "./DiceGrid";
 
 function App() {
@@ -15,6 +12,13 @@ function App() {
 
   //Creating turn state for, which indicates player turn
   const [turn, setTurn] = useState(0);
+  // can place the dice
+  const [canPlace, setCanPlace] = useState(false)
+  // possibly need a can roll?
+
+  useEffect(()=>{
+    console.log("canplace: " + canPlace)
+  }, [canPlace])
 
   return (
     <div className="screen">
@@ -23,13 +27,17 @@ function App() {
         player={1}
         turn={turn}
         setTurn={setTurn}
+        canPlace={canPlace}
+        setCanPlace={setCanPlace}
       />
-      <RollDice setPocketDice={setPocketDice} turn={turn} />
+      <RollDice setPocketDice={setPocketDice} turn={turn} setCanPlace={setCanPlace} canRoll={canPlace} />
       <DiceGrid
         pocketDice={pocketDice}
         player={2}
         turn={turn}
         setTurn={setTurn}
+        canPlace={canPlace}
+        setCanPlace={setCanPlace}
       />
     </div>
   );
